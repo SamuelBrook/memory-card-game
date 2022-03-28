@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(rgb(0, 0, 0), #301949);
+  width: 100%;
+  color: whitesmoke;
+  padding-bottom: 20px;
+  height: 240px;
+  font-family: sans-serif;
+}
+
+#title {
+  margin-bottom: 50px;
+  margin-left: 32px;
+}
+
+#instructions {
+  margin-left: 32px;
+}
+
+#instruction {
+  margin-bottom: 32px;
+}
+
+#scores {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  margin-left: 350px;
+  margin-bottom: 40px;
+}
