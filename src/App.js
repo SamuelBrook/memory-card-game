@@ -86,55 +86,70 @@ function App() {
   const [cardSet, setCardSet] = useState(cards);
 
   const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
+    let newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
-    return array;
+    return newArray;
   };
 
-  const checkIfNew = (card) => {
-    //check if card is new -> relate card with card in array
+  useEffect(() => {
+    const checkIfNew = (card) => {
+      for (let i = 0; i < cardSet.length; i++) {
+        if (cardSet[i].text === card.id) {
+          if (cardSet[i].clicked === true) {
+            return false;
+          } else {
+            const newCardSet = cardSet;
+            const editedSet = newCardSet.map((card) => {
+              if (cardSet[i] === card) {
+                card.clicked = true;
+              }
+              return card;
+            });
+            setCardSet(editedSet);
+            return true;
+          }
+        }
+      }
+    };
 
-    for (let i = 0; i < cardSet.length; i++) {
-      if (cardSet[i].text === card.text) {
-        if (cardSet[i].clicked === true) {
-          return false;
+    const cards = document.querySelectorAll(".cards");
+    cards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const target = e.currentTarget;
+        const checkedIfNew = checkIfNew(target);
+
+        if (checkedIfNew === true) {
+          setScore((prevScore) => prevScore + 1);
         } else {
-          const newCardSet = cardSet;
-          const editedSet = newCardSet.map((card) => {
-            if (cardSet[i] === card) {
-              card.clicked = true;
-            }
+          const shuffledArray = shuffleArray(cardSet);
+          const editedSet = shuffledArray.map((card) => {
+            card.clicked = false;
             return card;
           });
           setCardSet(editedSet);
-          return true;
+          setScore(0);
         }
-      }
-    }
-  };
-
-  const resetDeck = () => {};
+      });
+    });
+  }, []);
 
   useEffect(() => {
-    const cards = document.querySelectorAll(".card");
+    if (score > bestScore) {
+      setBestScore(score);
+    }
+  });
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".cards");
     cards.forEach((card) => {
       card.addEventListener("click", (e) => {
-        const target = e.target;
         const shuffledArray = shuffleArray(cardSet);
         setCardSet(shuffledArray);
 
-        if (score < bestScore) {
-          setBestScore(score);
-        }
-        const checkedIfNew = checkIfNew(target);
-        if (checkedIfNew === true) {
-          setCardSet();
-        } else {
-          //call method which resets
-          // use return method to "component will unmount" cleanup.
-        }
+        /*
 
         if (score === 12) {
           //remove cards and display win game box
@@ -154,9 +169,10 @@ function App() {
           buttonContainer.appendChild(yesButton);
           buttonContainer.appendChild(noButton);
         }
+        */
       });
     });
-  });
+  }, []);
 
   return (
     <div className="App">

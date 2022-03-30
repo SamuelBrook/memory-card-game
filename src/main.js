@@ -7,7 +7,7 @@ function Main(props) {
       <div className="cardSet">
         {cardSet.map((card) => {
           return (
-            <div className="cards" key={card.id}>
+            <div className="cards" key={card.id} id={card.text}>
               <div id="image-container">
                 <img className="image" src={card.image} alt={card.text}></img>
               </div>
