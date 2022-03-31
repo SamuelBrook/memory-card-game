@@ -6,8 +6,8 @@ function Header(props) {
       <div id="left-side">
         <h1 id="title">Memory Card Game</h1>
         <span id="instructions">
-          Click on cards to earn points but don't click on any card more than
-          once!
+          Click on the cards to earn points but don't click on any card more
+          than once!
         </span>
       </div>
       <div id="scores">

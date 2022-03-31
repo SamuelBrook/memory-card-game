@@ -9,17 +9,22 @@
   font-family: sans-serif;
 }
 
+@font-face {
+  font-family: "Acme-Regular";
+  src: url(./Acme-Regular.ttf);
+}
+
 #title {
   margin-bottom: 50px;
   margin-left: 32px;
+  font-family: "Acme-Regular", sans-serif;
+  font-size: 50px;
 }
 
 #instructions {
   margin-left: 32px;
-}
-
-#instruction {
-  margin-bottom: 32px;
+  font-family: "Acme-Regular", sans-serif;
+  font-size: larger;
 }
 
 #scores {

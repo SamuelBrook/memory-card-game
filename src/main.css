@@ -17,6 +17,11 @@
   width: 1000px;
 }
 
+@font-face {
+  font-family: "Galada-Regular";
+  src: url(./Galada-Regular.ttf);
+}
+
 .cards {
   height: 150px;
   width: 120px;
@@ -29,6 +34,11 @@
   align-items: center;
   background-color: #47246d;
   border-radius: 10px;
+}
+
+.cards:hover {
+  box-shadow: 0 0 40px 10px #47246d;
+  cursor: pointer;
 }
 
 #image-container {
@@ -54,4 +64,40 @@
   margin-top: auto;
   margin-bottom: 12px;
   color: goldenrod;
+  font-family: "Galada-Regular", sans-serif;
+  font-size: large;
+}
+
+#win-game-message {
+  margin-left: 96px;
+  margin-top: 96px;
+  margin-bottom: 32px;
+  font-family: "Acme-Regular", sans-serif;
+  font-size: 56px;
+  color: white;
+}
+
+#button-container {
+  margin-left: 320px;
+  font-family: "Acme-Regular", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.win-choice {
+  background-color: #47246d;
+  border: none;
+  font-family: "Acme-Regular", sans-serif;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.win-choice:hover {
+  box-shadow: 0 0 40px 5px #47246d;
+  cursor: pointer;
 }
