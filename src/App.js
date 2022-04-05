@@ -1,12 +1,14 @@
 import "./App.css";
 import Header from "./header";
 import Main from "./main";
+import WinMessage from "./win-message";
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
 
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [gameReset, setGameReset] = useState(false);
 
   const cards = [
     {
@@ -140,51 +142,21 @@ function App() {
     if (score > bestScore) {
       setBestScore(score);
     }
-  });
+  }, [score]);
 
   useEffect(() => {
     if (score >= 12) {
-      //hide card display and display win game box
-      const cardSet = document.querySelector(".cardSet");
-      const container = document.querySelector(".main");
-      cardSet.style.display = "none";
+      setGameReset(true);
+      // const noChoice = document.querySelector("#no-choice");
+      // const yesChoice = document.querySelector("#yes-choice");
+      // yesChoice.addEventListener("click", () => {
+      //   window.location.reload();
+      // });
+      // noChoice.addEventListener("click", () => {
+      //   setGameReset(false);
+      // });
 
-      const winGameText = document.createElement("div");
-      winGameText.id = "win-game-message";
-      winGameText.className = "win-message";
-      winGameText.textContent = "You win! Reset score or continue?";
-      container.appendChild(winGameText);
-      const yesButton = document.createElement("button");
-      const noButton = document.createElement("button");
-      const buttonContainer = document.createElement("div");
-      yesButton.className = "win-choice";
-      yesButton.id = "yes-choice";
-      yesButton.textContent = "Reset";
-      noButton.className = "win-choice";
-      noButton.id = "no-choice";
-      noButton.textContent = "Continue";
-      buttonContainer.id = "button-container";
-      buttonContainer.className = "win-message";
-      container.appendChild(buttonContainer);
-      buttonContainer.appendChild(yesButton);
-      buttonContainer.appendChild(noButton);
-
-      const noChoice = document.querySelector("#no-choice");
-      const yesChoice = document.querySelector("#yes-choice");
-      yesChoice.addEventListener("click", () => {
-        window.location.reload();
-      });
-      noChoice.addEventListener("click", () => {
-        const winElements = document.querySelectorAll(".win-message");
-        winElements.forEach((element) => {
-          element.remove();
-        });
-        setScore(0);
-
-        setCardSet(cards);
-
-        cardSet.style.display = "";
-      });
+      //The above needs to be edited to allow for an on click that works and doesnt break the application: look at previous uses of the "OnClick" method
     }
   }, [score]);
 
@@ -196,12 +168,13 @@ function App() {
         setCardSet(shuffledArray);
       });
     });
-  });
+  }, []);
 
   return (
     <div className="App">
       <Header score={score} bestScore={bestScore} />
-      <Main cardSet={cardSet} />
+      {!gameReset && <Main cardSet={cardSet} />}
+      {gameReset && <WinMessage />}
     </div>
   );
 }
