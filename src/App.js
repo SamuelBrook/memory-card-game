@@ -96,6 +96,10 @@ function App() {
     return newArray;
   };
 
+  const resetPage = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     const checkIfNew = (card) => {
       for (let i = 0; i < cardSet.length; i++) {
@@ -120,8 +124,10 @@ function App() {
     const cards = document.querySelectorAll(".cards");
     cards.forEach((card) => {
       card.addEventListener("click", (e) => {
+        console.log(card);
         const target = e.currentTarget;
         const checkedIfNew = checkIfNew(target);
+        console.log(checkedIfNew);
 
         if (checkedIfNew === true) {
           setScore((prevScore) => prevScore + 1);
@@ -136,7 +142,17 @@ function App() {
         }
       });
     });
-  }, []);
+  }, [gameReset]);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".cards");
+    cards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const shuffledArray = shuffleArray(cardSet);
+        setCardSet(shuffledArray);
+      });
+    });
+  }, [gameReset]);
 
   useEffect(() => {
     if (score > bestScore) {
@@ -147,34 +163,30 @@ function App() {
   useEffect(() => {
     if (score >= 12) {
       setGameReset(true);
-      // const noChoice = document.querySelector("#no-choice");
-      // const yesChoice = document.querySelector("#yes-choice");
-      // yesChoice.addEventListener("click", () => {
-      //   window.location.reload();
-      // });
-      // noChoice.addEventListener("click", () => {
-      //   setGameReset(false);
-      // });
-
-      //The above needs to be edited to allow for an on click that works and doesnt break the application: look at previous uses of the "OnClick" method
     }
   }, [score]);
 
   useEffect(() => {
-    const cards = document.querySelectorAll(".cards");
-    cards.forEach((card) => {
-      card.addEventListener("click", (e) => {
-        const shuffledArray = shuffleArray(cardSet);
-        setCardSet(shuffledArray);
+    if (score >= 12) {
+      const noButton = document.querySelector("#no-choice");
+      noButton.addEventListener("click", () => {
+        setScore(0);
+        setCardSet(cards);
       });
-    });
-  }, []);
+    }
+  }, [gameReset]);
+
+  useEffect(() => {
+    if (score === 0 && gameReset) {
+      setGameReset(false);
+    }
+  }, [cardSet]);
 
   return (
     <div className="App">
       <Header score={score} bestScore={bestScore} />
       {!gameReset && <Main cardSet={cardSet} />}
-      {gameReset && <WinMessage />}
+      {gameReset && <WinMessage resetPage={resetPage} />}
     </div>
   );
 }
