@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/memory-card-game/static/css/main.badc4337.css",
+    "main.js": "/memory-card-game/static/js/main.00a02ff2.js",
+    "static/media/Galada-Regular.ttf": "/memory-card-game/static/media/Galada-Regular.96f42dd34b5558ca6dd1.ttf",
+    "static/media/Acme-Regular.ttf": "/memory-card-game/static/media/Acme-Regular.f6db4c5c3282b4e95e85.ttf",
+    "index.html": "/memory-card-game/index.html",
+    "main.badc4337.css.map": "/memory-card-game/static/css/main.badc4337.css.map",
+    "main.00a02ff2.js.map": "/memory-card-game/static/js/main.00a02ff2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.badc4337.css",
+    "static/js/main.00a02ff2.js"
+  ]
+}
