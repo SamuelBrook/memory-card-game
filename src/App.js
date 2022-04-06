@@ -4,6 +4,18 @@ import Main from "./main";
 import WinMessage from "./win-message";
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
+import chicken from "./images/chicken-wizard.png";
+import frogLog from "./images/frog-on-log.png";
+import frogWizard from "./images/frog-wizard.png";
+import hedgeFruit from "./images/hedgehog-with-fruit.png";
+import hedgehog from "./images/hedgehog.png";
+import owlBlue from "./images/owl-on-blue-mug.png";
+import owlPink from "./images/owl-on-pink-mug.png";
+import owl from "./images/owl.png";
+import rabbitCarrot from "./images/rabbit-with-carrot.png";
+import rabbit from "./images/rabbit.png";
+import panda from "./images/red-panda-with-hat.png";
+import squirrel from "./images/squirrel.png";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -15,73 +27,73 @@ function App() {
       text: "Wiz Chick",
       clicked: false,
       id: uniqid(),
-      image: "/images/chicken-wizard.png",
+      image: chicken,
     },
     {
       text: "Log Frog",
       clicked: false,
       id: uniqid(),
-      image: "/images/frog-on-log.png",
+      image: frogLog,
     },
     {
       text: "Enchantoad",
       clicked: false,
       id: uniqid(),
-      image: "/images/frog-wizard.png",
+      image: frogWizard,
     },
     {
       text: "Fruithog",
       clicked: false,
       id: uniqid(),
-      image: "/images/hedgehog-with-fruit.png",
+      image: hedgeFruit,
     },
     {
       text: "Hedgehogger",
       clicked: false,
       id: uniqid(),
-      image: "/images/hedgehog.png",
+      image: hedgehog,
     },
     {
       text: "Owlo",
       clicked: false,
       id: uniqid(),
-      image: "/images/owl-on-blue-mug.png",
+      image: owlBlue,
     },
     {
       text: "Owlie",
       clicked: false,
       id: uniqid(),
-      image: "/images/owl-on-pink-mug.png",
+      image: owlPink,
     },
     {
       text: "Owlstrix",
       clicked: false,
       id: uniqid(),
-      image: "/images/owl.png",
+      image: owl,
     },
     {
       text: "Rabatious",
       clicked: false,
       id: uniqid(),
-      image: "/images/rabbit-with-carrot.png",
+      image: rabbitCarrot,
     },
     {
       text: "Gunny",
       clicked: false,
       id: uniqid(),
-      image: "/images/rabbit.png",
+      image: rabbit,
     },
     {
       text: "Bamboom",
       clicked: false,
       id: uniqid(),
-      image: "/images/red-panda-with-hat.png",
+      image: panda,
     },
     {
       text: "Acornski",
       clicked: false,
       id: uniqid(),
-      image: "/images/squirrel.png",
+      image: squirrel,
     },
   ];
 
